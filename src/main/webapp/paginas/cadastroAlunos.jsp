@@ -5,6 +5,7 @@
 <html lang="en">
 
 <jsp:include page="head.jsp"></jsp:include>
+<title>Cadastro de Alunos</title>
 
 <body id="page-top">
 	<div id="wrapper">
@@ -35,9 +36,14 @@
 							<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
 						</ol>
 					</div>
-					
-					<h1>Corpo do Sistema</h1>
-				
+
+					<!--Row-->
+					<div class="row mb-3">
+
+						<h1>Corpo do Sistema</h1>
+
+					</div>
+					<!--Row-->
 				</div>
 				<!---Container Fluid-->
 			</div>

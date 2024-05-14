@@ -10,29 +10,26 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="<%= request.getContextPath() %>/paginas/home.jsp">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
       <hr class="sidebar-divider">
-      <div class="sidebar-heading">
-        Features
-      </div>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Bootstrap UI</span>
+          <span>Cadastros</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bootstrap UI</h6>
-            <a class="collapse-item" href="alerts.html">Alerts</a>
-            <a class="collapse-item" href="buttons.html">Buttons</a>
-            <a class="collapse-item" href="dropdowns.html">Dropdowns</a>
-            <a class="collapse-item" href="modals.html">Modals</a>
-            <a class="collapse-item" href="popovers.html">Popovers</a>
-            <a class="collapse-item" href="progress-bar.html">Progress Bars</a>
+            
+            <a class="collapse-item" href="<%= request.getContextPath() %>/paginas/cadastroAlunos.jsp">Alunos</a>
+            <a class="collapse-item" href="cadastroFuncionarios.jsp">Funcinários</a>
+            <a class="collapse-item" href="cadastroLivros.jsp">Livros</a>
+            <a class="collapse-item" href="cadastroEditoras.jsp">Editoras</a>
+            <a class="collapse-item" href="cadastroPeriodicos.jsp">Periódicos</a>
+            
           </div>
         </div>
       </li>
