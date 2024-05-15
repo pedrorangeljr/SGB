@@ -51,22 +51,21 @@
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
-														<label>ID</label> <input type="text"
-															class="form-control" disabled="" readonly="readonly"
-															value="">
+														<label>ID</label> <input type="text" class="form-control"
+															disabled="" readonly="readonly" value="">
 													</div>
 												</div>
 												<div class="col-md-3 px-1">
 													<div class="form-group">
 														<label>Nome</label> <input type="text"
-															class="form-control" placeholder="name" name="nome" id="nome"
-															>
+															class="form-control" placeholder="name" name="nome"
+															id="nome">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
-														<label for="telefone">Telefone</label> <input
-															type="email" class="form-control" placeholder="telefone"
+														<label for="telefone">Telefone</label> <input type="email"
+															class="form-control" placeholder="telefone"
 															name="telefone" id="telefone">
 													</div>
 												</div>
@@ -81,7 +80,7 @@
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Cep</label> <input type="text" class="form-control"
-															placeholder="cep" name="cep" id="cep">
+															placeholder="cep" name="cep" id="cep" onblur="pesquisaCep();">
 													</div>
 												</div>
 											</div>
@@ -157,6 +156,40 @@
 	</a>
 
 	<jsp:include page="script.jsp"></jsp:include>
+
+	<script type="text/javascript">
+	
+	
+		function pesquisaCep() {
+			
+			var cep = $("#cep").val();
+
+			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
+					function(dados) {
+
+						if (!("erro" in dados)) {
+
+							//Atualiza os campos com os valores da consulta.
+							$("cep").val(dados.cep);
+							$("#logradouro").val(dados.logradouro);
+							$("#bairro").val(dados.bairro);
+							$("#localidade").val(dados.localidade);
+							$("#uf").val(dados.uf);
+
+						} //end if.
+						else {
+
+							//CEP pesquisado não foi encontrado.
+							limpa_formulário_cep();
+							alert("CEP não encontrado.");
+						}
+
+					});
+
+		}
+		
+		
+	</script>
 </body>
 
 </html>
