@@ -47,7 +47,7 @@
 										<h5 class="card-title">Cadastro de Alunos</h5>
 									</div>
 									<div class="card-body">
-										<form>
+										<form action="<%= request.getContextPath() %>/ServletAluno" method="post">
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
@@ -64,7 +64,7 @@
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
-														<label for="telefone">Telefone</label> <input type="email"
+														<label for="telefone">Telefone</label> <input type="text"
 															class="form-control" placeholder="telefone"
 															name="telefone" id="telefone">
 													</div>

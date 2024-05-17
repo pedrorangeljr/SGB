@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DaoAluno;
+import model.ModelAluno;
 
 
 @WebServlet("/ServletAluno")
@@ -32,6 +34,7 @@ public class ServletAluno extends HttpServlet {
 		
 		try {
 			
+			String id = request.getParameter("id");
 			String nome = request.getParameter("nome");
 			String telefone = request.getParameter("telefone");
 			String cpf = request.getParameter("cpf");
@@ -41,6 +44,24 @@ public class ServletAluno extends HttpServlet {
 			String bairro = request.getParameter("bairro");
 			String cidade = request.getParameter("cidade");
 			String uf = request.getParameter("uf");
+			
+			ModelAluno aluno = new ModelAluno();
+			
+			aluno.setIdAluno(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
+			aluno.setNome(nome);
+			aluno.setTelefone(Integer.parseInt(telefone));
+			aluno.setCpf(cpf);
+			aluno.setCep(cep);
+			aluno.setLogradouro(logradouro);
+			aluno.setNumero(numero);
+			aluno.setBairro(bairro);
+			aluno.setCidade(cidade);
+			aluno.setUf(uf);
+			
+			daoAluno.salvarAluno(aluno);
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+			dispatcher.forward(request, response);
 			
 		} catch (Exception e) {
 			

@@ -8,7 +8,7 @@ public class ModelAluno implements Serializable {
 
 	private Long idAluno;
 	private String nome;
-	private String telefone;
+	private int telefone;
 	private String cpf;
 	private String cep;
 	private String logradouro;
@@ -30,11 +30,11 @@ public class ModelAluno implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTelefone() {
+	public int getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setTelefone(int i) {
+		this.telefone = i;
 	}
 	public String getCpf() {
 		return cpf;
