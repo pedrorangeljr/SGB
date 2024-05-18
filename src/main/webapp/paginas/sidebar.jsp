@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon">
           <img src="<%= request.getContextPath() %>/assets/img/logo/logo2.png">
         </div>
-        <div class="sidebar-brand-text mx-3">RuangAdmin</div>
+        <div class="sidebar-brand-text mx-3"><%= session.getAttribute("usuario") %></div>
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
@@ -37,11 +37,10 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
           <i class="fab fa-fw fa-wpforms"></i>
-          <span>Forms</span>
+          <span>Relatórios</span>
         </a>
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Forms</h6>
             <a class="collapse-item" href="form_basics.html">Form Basics</a>
             <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
           </div>
