@@ -34,6 +34,8 @@ public class ServletAluno extends HttpServlet {
 		
 		try {
 			
+			String msg = "Cadastro realizado com sucesso";
+			
 			String id = request.getParameter("id");
 			String nome = request.getParameter("nome");
 			String telefone = request.getParameter("telefone");
@@ -58,8 +60,17 @@ public class ServletAluno extends HttpServlet {
 			aluno.setCidade(cidade);
 			aluno.setUf(uf);
 			
-			aluno = daoAluno.salvarAluno(aluno);
+			if(daoAluno.validarCpf(aluno.getCpf()) && aluno.getIdAluno() == null) {
+				
+				msg = "Já existe Aluno com mesmo CPF";
+				
+			}else {
+				
+				aluno = daoAluno.salvarAluno(aluno);
+			}
 			
+			
+			request.setAttribute("msg", msg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
 			request.setAttribute("modelAluno", aluno);
 			dispatcher.forward(request, response);

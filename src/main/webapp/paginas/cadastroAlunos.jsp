@@ -47,7 +47,8 @@
 										<h5 class="card-title">Cadastro de Alunos</h5>
 									</div>
 									<div class="card-body">
-										<form action="<%= request.getContextPath() %>/ServletAluno" method="post">
+										<form action="<%=request.getContextPath()%>/ServletAluno"
+											method="post">
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
@@ -80,7 +81,8 @@
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Cep</label> <input type="text" class="form-control"
-															placeholder="cep" name="cep" id="cep" onblur="pesquisaCep();">
+															placeholder="cep" name="cep" id="cep"
+															onblur="pesquisaCep();">
 													</div>
 												</div>
 											</div>
@@ -127,7 +129,8 @@
 
 											<div class="row">
 												<div class="update ml-auto mr-auto">
-													<button type="submit" class="btn btn-primary btn-round">Cadastrar</button>
+													<button type="submit" class="btn btn-primary btn-round"
+														onclick="mostrarAlerta()">Cadastrar</button>
 													<button type="button" class="btn btn-warning btn-round">Editar</button>
 													<button type="button" class="btn btn-danger btn-round">Excluir</button>
 												</div>
@@ -161,9 +164,12 @@
 
 	<script type="text/javascript">
 	
-	
+		function mostrarAlerta() {
+			alert("Salvo com sucesso!");
+		}
+
 		function pesquisaCep() {
-			
+
 			var cep = $("#cep").val();
 
 			$.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?",
@@ -189,8 +195,6 @@
 					});
 
 		}
-		
-		
 	</script>
 </body>
 
