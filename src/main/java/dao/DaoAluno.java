@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.eclipse.jdt.internal.compiler.util.HashtableOfObjectToInt;
+
 import com.mysql.cj.xdevapi.Result;
 
 import conexao.SingleConnection;
@@ -22,7 +24,7 @@ public class DaoAluno {
 
 	/*Metodo para salvar alunos*/
 	
-	public void salvarAluno(ModelAluno aluno) {
+	public ModelAluno salvarAluno(ModelAluno aluno) {
 		
 		try {
 			
@@ -35,13 +37,15 @@ public class DaoAluno {
 			insert.setString(3, aluno.getCpf());
 			insert.setString(4, aluno.getCep());
 			insert.setString(5, aluno.getLogradouro());
-			insert.setString(6,aluno.getNome());
+			insert.setString(6,aluno.getNumero());
 			insert.setString(7, aluno.getBairro());
 			insert.setString(8, aluno.getCidade());
 			insert.setString(9, aluno.getUf());
 			insert.execute();
 			
 			connection.commit();
+			
+			return this.consultarAluno(aluno.getNome());
 			
 		} catch (Exception e) {
 			
@@ -56,6 +60,38 @@ public class DaoAluno {
 			
 			e.printStackTrace();
 		}
+		
+		return aluno;
+	}
+	
+	/*Metodo que consulta Aluno pelo Nome*/
+	
+	public ModelAluno consultarAluno(String nome) throws Exception {
+		
+		ModelAluno aluno = new ModelAluno();
+		
+		String sql = "select * from tbaluno where upper(nome) = upper('?')";
+		PreparedStatement consultar = connection.prepareStatement(sql);
+		
+		ResultSet resultado = consultar.executeQuery();
+		
+		while(resultado.next()) {
+			
+			aluno.setIdAluno(resultado.getLong("id"));
+			aluno.setNome(resultado.getString("nome"));
+			aluno.setTelefone(resultado.getInt("telefone"));
+			aluno.setCpf(resultado.getString("cpf"));
+			aluno.setCep(resultado.getString("cep"));
+			aluno.setLogradouro(resultado.getString("logradouro"));
+			aluno.setNumero(resultado.getString("numero"));
+			aluno.setBairro(resultado.getString("bairro"));
+			aluno.setCidade(resultado.getString("cidade"));
+			aluno.setUf(resultado.getString("uf"));
+			
+		}
+		
+		
+		return aluno;
 	}
 
 	public boolean validarCpf(String cpf) throws Exception {

@@ -128,6 +128,8 @@
 											<div class="row">
 												<div class="update ml-auto mr-auto">
 													<button type="submit" class="btn btn-primary btn-round">Cadastrar</button>
+													<button type="button" class="btn btn-warning btn-round">Editar</button>
+													<button type="button" class="btn btn-danger btn-round">Excluir</button>
 												</div>
 											</div>
 										</form>

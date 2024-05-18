@@ -58,9 +58,10 @@ public class ServletAluno extends HttpServlet {
 			aluno.setCidade(cidade);
 			aluno.setUf(uf);
 			
-			daoAluno.salvarAluno(aluno);
+			aluno = daoAluno.salvarAluno(aluno);
 			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+			request.setAttribute("modelAluno", aluno);
 			dispatcher.forward(request, response);
 			
 		} catch (Exception e) {
