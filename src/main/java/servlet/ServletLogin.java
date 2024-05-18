@@ -26,6 +26,20 @@ public class ServletLogin extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String acao = request.getParameter("acao");
+
+		if (acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("logout")) {
+
+			request.getSession().invalidate();
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+			dispatcher.forward(request, response);
+			
+		} else {
+
+			doPost(request, response);
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,7 +69,7 @@ public class ServletLogin extends HttpServlet {
 
 					RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 					dispatcher.forward(request, response);
-					
+
 				} else {
 
 					RequestDispatcher dispatcher = request.getRequestDispatcher("./index.jsp");
