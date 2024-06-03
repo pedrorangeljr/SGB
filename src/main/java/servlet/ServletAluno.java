@@ -66,6 +66,15 @@ public class ServletAluno extends HttpServlet {
 				
 			}else {
 				
+				if(aluno.isNovo()) {
+					
+					msg = "Gravado com sucesso";
+				}
+				else {
+					
+					msg = "Atualizado com Sucesso!";
+				}
+				
 				aluno = daoAluno.salvarAluno(aluno);
 			}
 			

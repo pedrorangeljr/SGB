@@ -5,7 +5,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="<%= request.getContextPath() %>/assets/img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Dashboard</title>
+  <title><%= session.getAttribute("usuario") %> - Dashboard</title>
   <link href="<%= request.getContextPath() %>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="<%= request.getContextPath() %>/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<%= request.getContextPath() %>/assets/css/ruang-admin.min.css" rel="stylesheet">

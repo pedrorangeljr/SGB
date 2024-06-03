@@ -17,6 +17,19 @@ public class ModelAluno implements Serializable {
 	private String cidade;
 	private String uf;
 	
+	public boolean isNovo() {
+		
+		if(this.idAluno == null) {
+			
+			return true;
+			
+		}else if(this.idAluno != null && this.idAluno > 0) {
+			
+			return false;
+		}
+		
+		return idAluno == null;
+	}
 	
 	public Long getIdAluno() {
 		return idAluno;

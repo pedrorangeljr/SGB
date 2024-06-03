@@ -27,24 +27,47 @@ public class DaoAluno {
 	public ModelAluno salvarAluno(ModelAluno aluno) {
 
 		try {
+			
+			if(aluno.isNovo()) {
+				
+				String sql = "insert into tbaluno (nome,telefone,cpf,cep,logradouro,numero,bairro,cidade,uf) values"
+						+ "(?,?,?,?,?,?,?,?,?)";
+				PreparedStatement insert = connection.prepareStatement(sql);
 
-			String sql = "insert into tbaluno (nome,telefone,cpf,cep,logradouro,numero,bairro,cidade,uf) values"
-					+ "(?,?,?,?,?,?,?,?,?)";
-			PreparedStatement insert = connection.prepareStatement(sql);
+				insert.setString(1, aluno.getNome());
+				insert.setLong(2, aluno.getTelefone());
+				insert.setString(3, aluno.getCpf());
+				insert.setString(4, aluno.getCep());
+				insert.setString(5, aluno.getLogradouro());
+				insert.setString(6, aluno.getNumero());
+				insert.setString(7, aluno.getBairro());
+				insert.setString(8, aluno.getCidade());
+				insert.setString(9, aluno.getUf());
+				insert.execute();
 
-			insert.setString(1, aluno.getNome());
-			insert.setLong(2, aluno.getTelefone());
-			insert.setString(3, aluno.getCpf());
-			insert.setString(4, aluno.getCep());
-			insert.setString(5, aluno.getLogradouro());
-			insert.setString(6, aluno.getNumero());
-			insert.setString(7, aluno.getBairro());
-			insert.setString(8, aluno.getCidade());
-			insert.setString(9, aluno.getUf());
-			insert.execute();
-
-			connection.commit();
-
+				connection.commit();
+				
+			}else {
+				
+				String sql = "update tbaluno set nome = ?, set telefone = ?, set cep = ?, set logradouro = ?, set numero = ?,"
+						+ "set bairro = ?, set cidade = ?, set uf = ? where idAluno = "+aluno.getIdAluno()+"";
+				PreparedStatement update = connection.prepareStatement(sql);
+				
+				update.setString(1, aluno.getNome());
+				update.setLong(2, aluno.getTelefone());
+				update.setString(3, aluno.getCep());
+				update.setString(4, aluno.getLogradouro());
+				update.setString(5, aluno.getNumero());
+				update.setString(6, aluno.getBairro());
+				update.setString(7, aluno.getCidade());
+				update.setString(8, aluno.getUf());
+				
+				update.executeUpdate();
+				
+				connection.commit();
+				
+			}
+			
 			return this.consultarAluno(aluno.getNome());
 
 		} catch (Exception e) {
@@ -64,7 +87,7 @@ public class DaoAluno {
 		return aluno;
 	}
 
-	/* Metodo que consulta Aluno pelo Nome */
+	/* Metodo que consulta Aluno pelo CPF */
 
 	public ModelAluno consultarAluno(String nome) throws Exception {
 

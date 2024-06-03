@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,21 +53,21 @@
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
 														<label>ID</label> <input type="text" class="form-control"
-															disabled="" readonly="readonly" value="">
+															disabled="" readonly="readonly" value="${aluno.id }">
 													</div>
 												</div>
 												<div class="col-md-3 px-1">
 													<div class="form-group">
 														<label>Nome</label> <input type="text"
 															class="form-control" placeholder="name" name="nome"
-															id="nome">
+															id="nome" value="${aluno.nome }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label for="telefone">Telefone</label> <input type="text"
 															class="form-control" placeholder="telefone"
-															name="telefone" id="telefone">
+															name="telefone" id="telefone" value="${aluno.telefone }">
 													</div>
 												</div>
 											</div>
@@ -75,14 +75,14 @@
 												<div class="col-md-6 pr-1">
 													<div class="form-group">
 														<label>CPF</label> <input type="text" class="form-control"
-															placeholder="cpf" name="cpf" id="cpf">
+															placeholder="cpf" name="cpf" id="cpf" value="${aluno.cpf }">
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Cep</label> <input type="text" class="form-control"
 															placeholder="cep" name="cep" id="cep"
-															onblur="pesquisaCep();">
+															onblur="pesquisaCep();" value=${aluno.cep }>
 													</div>
 												</div>
 											</div>
@@ -91,14 +91,14 @@
 													<div class="form-group">
 														<label>Logradouro</label> <input type="text"
 															class="form-control" placeholder="logradouro"
-															name="logradouro" id="logradouro">
+															name="logradouro" id="logradouro" value=${aluno.logradouro }>
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Número</label> <input type="text"
 															class="form-control" placeholder="numero"
-															name="logradouro" id="logradouro">
+															name="numero" id="numero" value="${aluno.numero }">
 													</div>
 												</div>
 											</div>
@@ -109,20 +109,20 @@
 													<div class="form-group">
 														<label>Bairro</label> <input type="text"
 															class="form-control" placeholder="bairro" name="bairro"
-															id="bairro">
+															id="bairro" value="${aluno.bairro }">
 													</div>
 												</div>
 												<div class="col-md-4 px-1">
 													<div class="form-group">
 														<label>Cidade</label> <input type="text"
 															class="form-control" placeholder="cidade" name="cidade"
-															id="cidade">
+															id="cidade" value="${aluno.cidade }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label>UF</label> <input type="text" class="form-control"
-															placeholder="uf" name="uf" id="uf">
+															placeholder="uf" name="uf" id="uf" value="${aluno.uf }">
 													</div>
 												</div>
 											</div>
