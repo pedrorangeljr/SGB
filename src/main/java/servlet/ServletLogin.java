@@ -87,6 +87,10 @@ public class ServletLogin extends HttpServlet {
 		} catch (Exception e) {
 
 			e.printStackTrace();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/erro.jsp");
+			request.setAttribute("msg", e.getMessage());
+			dispatcher.forward(request, response);
 		}
 	}
 

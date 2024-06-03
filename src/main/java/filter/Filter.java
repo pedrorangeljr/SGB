@@ -2,6 +2,7 @@ package filter;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -60,7 +61,24 @@ public class Filter extends HttpFilter implements javax.servlet.Filter {
 			
 		} catch (Exception e) {
 			
+			try {
+				
+				connection.rollback();
+				
+			} catch (SQLException e1) {
+				
+				e1.printStackTrace();
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/erro.jsp");
+				request.setAttribute("msg", e1.getMessage());
+				dispatcher.forward(request, response);
+			}
+			
 			e.printStackTrace();
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/erro.jsp");
+			request.setAttribute("msg", e.getMessage());
+			dispatcher.forward(request, response);
 		}
 	
 		
