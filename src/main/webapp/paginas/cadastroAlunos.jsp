@@ -49,14 +49,15 @@
 									<div class="card-body">
 										<form action="<%=request.getContextPath()%>/ServletAluno"
 											method="post" id="formAluno">
-											
+
 											<input type="hidden" name="acao" id="acao" value="">
-											
+
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
 														<label>ID</label> <input type="text" class="form-control"
-															disabled="" readonly="readonly" value="${modelAluno.idAluno }">
+															disabled="" readonly="readonly"
+															value="${modelAluno.idAluno }">
 													</div>
 												</div>
 												<div class="col-md-3 px-1">
@@ -70,7 +71,8 @@
 													<div class="form-group">
 														<label for="telefone">Telefone</label> <input type="text"
 															class="form-control" placeholder="telefone"
-															name="telefone" id="telefone" value="${modelAluno.telefone }">
+															name="telefone" id="telefone"
+															value="${modelAluno.telefone }">
 													</div>
 												</div>
 											</div>
@@ -78,7 +80,8 @@
 												<div class="col-md-6 pr-1">
 													<div class="form-group">
 														<label>CPF</label> <input type="text" class="form-control"
-															placeholder="cpf" name="cpf" id="cpf" value="${modelAluno.cpf }">
+															placeholder="cpf" name="cpf" id="cpf"
+															value="${modelAluno.cpf }">
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
@@ -94,14 +97,15 @@
 													<div class="form-group">
 														<label>Logradouro</label> <input type="text"
 															class="form-control" placeholder="logradouro"
-															name="logradouro" id="logradouro" value=${modelAluno.logradouro }>
+															name="logradouro" id="logradouro"
+															value=${modelAluno.logradouro }>
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Número</label> <input type="text"
-															class="form-control" placeholder="numero"
-															name="numero" id="numero" value="${modelAluno.numero }">
+															class="form-control" placeholder="numero" name="numero"
+															id="numero" value="${modelAluno.numero }">
 													</div>
 												</div>
 											</div>
@@ -125,7 +129,8 @@
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label>UF</label> <input type="text" class="form-control"
-															placeholder="uf" name="uf" id="uf" value="${modelAluno.uf }">
+															placeholder="uf" name="uf" id="uf"
+															value="${modelAluno.uf }">
 													</div>
 												</div>
 											</div>
@@ -134,6 +139,9 @@
 												<div class="update ml-auto mr-auto">
 													<button type="submit" class="btn btn-primary btn-round"
 														onclick="mostrarAlerta()">Cadastrar</button>
+													<button type="button" data-toggle="modal"
+														data-target="#exampleModal"
+														class="btn btn-secondary btn-round">Pesquisar</button>
 													<button type="button" class="btn btn-warning btn-round">Editar</button>
 													<button type="button" class="btn btn-danger btn-round">Excluir</button>
 												</div>
@@ -149,6 +157,61 @@
 				<!---Container Fluid-->
 			</div>
 
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+
+						<div class="modal-body">
+
+							<form class="navbar-search"
+								action="<%=request.getContextPath()%>/ServletAluno"
+								method="post" id="formUser">
+
+								<input type="hidden" name="idAluno" value="" /> <input
+									type="hidden" name="acao" id="acao" value="">
+
+								<div class="input-group">
+									<input type="text" id="cpf" name="cpf"
+										class="form-control bg-light border-1 small"
+										placeholder="Pesquisar por CPF" aria-label="Search"
+										aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+									<div class="input-group-append">
+										<button onclick="buscarCpf();" class="btn btn-primary"
+											type="button">
+											<i class="fas fa-search fa-sm"></i>
+										</button>
+									</div>
+								</div>
+
+
+							</form>
+
+
+						</div>
+
+						<table class="table align-items-center table-flush"
+							id="tabelaResultados">
+							<thead class="thead-light">
+								<tr>
+									<th>ID</th>
+									<th>Nome</th>
+									<th>CPF</th>
+									<th>Ação</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Fechar</button>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!-- Footer -->
 
 			<jsp:include page="footer.jsp"></jsp:include>
@@ -166,7 +229,6 @@
 	<jsp:include page="script.jsp"></jsp:include>
 
 	<script type="text/javascript">
-	
 		function mostrarAlerta() {
 			alert("Salvo com sucesso!");
 		}
@@ -198,6 +260,8 @@
 					});
 
 		}
+		
+		
 	</script>
 </body>
 
