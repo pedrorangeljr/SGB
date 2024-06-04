@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,33 +10,70 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import dao.DaoAluno;
 import model.ModelAluno;
-
 
 @WebServlet("/ServletAluno")
 public class ServletAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	private DaoAluno daoAluno = new DaoAluno();
-    
-    public ServletAluno() {
-        super();
-       
-    }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	private DaoAluno daoAluno = new DaoAluno();
+
+	public ServletAluno() {
+		super();
+
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
-			
+
+			String acao = request.getParameter("acao");
+
+			if (acao.equalsIgnoreCase("buscarCpf")) {
+
+				String cpf = request.getParameter("cpf");
+
+				List<ModelAluno> dadosJson = daoAluno.consultaAlunoPorCpf(cpf);
+
+				ObjectMapper mapper = new ObjectMapper();
+
+				String json = mapper.writeValueAsString(dadosJson);
+
+				response.getWriter().write(json);
+			}
+
+			else if (acao.equalsIgnoreCase("buscarEdidar")) {
+
+				String idAluno = request.getParameter("idAluno");
+
+				ModelAluno aluno = daoAluno.consultarAlunoId(idAluno);
+
+				request.setAttribute("modelAluno", aluno);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+				dispatcher.forward(request, response);
+
+			}
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAluno.jsp");
+			dispatcher.forward(request, response);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		try {
+
 			String msg = "Cadastro realizado com sucesso";
-			
+
 			String id = request.getParameter("id");
 			String nome = request.getParameter("nome");
 			String telefone = request.getParameter("telefone");
@@ -46,9 +84,9 @@ public class ServletAluno extends HttpServlet {
 			String bairro = request.getParameter("bairro");
 			String cidade = request.getParameter("cidade");
 			String uf = request.getParameter("uf");
-			
+
 			ModelAluno aluno = new ModelAluno();
-			
+
 			aluno.setIdAluno(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
 			aluno.setNome(nome);
 			aluno.setTelefone(Integer.parseInt(telefone));
@@ -59,33 +97,31 @@ public class ServletAluno extends HttpServlet {
 			aluno.setBairro(bairro);
 			aluno.setCidade(cidade);
 			aluno.setUf(uf);
-			
-			if(daoAluno.validarCpf(aluno.getCpf()) && aluno.getIdAluno() == null) {
-				
+
+			if (daoAluno.validarCpf(aluno.getCpf()) && aluno.getIdAluno() == null) {
+
 				msg = "Já existe Aluno com mesmo CPF";
-				
-			}else {
-				
-				if(aluno.isNovo()) {
-					
+
+			} else {
+
+				if (aluno.isNovo()) {
+
 					msg = "Gravado com sucesso";
-				}
-				else {
-					
+				} else {
+
 					msg = "Atualizado com Sucesso!";
 				}
-				
+
 				aluno = daoAluno.salvarAluno(aluno);
 			}
-			
-			
+
 			request.setAttribute("msg", msg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
 			request.setAttribute("modelAluno", aluno);
 			dispatcher.forward(request, response);
-			
+
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 	}

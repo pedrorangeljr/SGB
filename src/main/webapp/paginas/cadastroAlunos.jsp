@@ -48,26 +48,29 @@
 									</div>
 									<div class="card-body">
 										<form action="<%=request.getContextPath()%>/ServletAluno"
-											method="post">
+											method="post" id="formAluno">
+											
+											<input type="hidden" name="acao" id="acao" value="">
+											
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
 														<label>ID</label> <input type="text" class="form-control"
-															disabled="" readonly="readonly" value="${aluno.id }">
+															disabled="" readonly="readonly" value="${modelAluno.idAluno }">
 													</div>
 												</div>
 												<div class="col-md-3 px-1">
 													<div class="form-group">
 														<label>Nome</label> <input type="text"
 															class="form-control" placeholder="name" name="nome"
-															id="nome" value="${aluno.nome }">
+															id="nome" value="${modelAluno.nome }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label for="telefone">Telefone</label> <input type="text"
 															class="form-control" placeholder="telefone"
-															name="telefone" id="telefone" value="${aluno.telefone }">
+															name="telefone" id="telefone" value="${modelAluno.telefone }">
 													</div>
 												</div>
 											</div>
@@ -75,14 +78,14 @@
 												<div class="col-md-6 pr-1">
 													<div class="form-group">
 														<label>CPF</label> <input type="text" class="form-control"
-															placeholder="cpf" name="cpf" id="cpf" value="${aluno.cpf }">
+															placeholder="cpf" name="cpf" id="cpf" value="${modelAluno.cpf }">
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Cep</label> <input type="text" class="form-control"
 															placeholder="cep" name="cep" id="cep"
-															onblur="pesquisaCep();" value=${aluno.cep }>
+															onblur="pesquisaCep();" value=${modelAluno.cep }>
 													</div>
 												</div>
 											</div>
@@ -91,14 +94,14 @@
 													<div class="form-group">
 														<label>Logradouro</label> <input type="text"
 															class="form-control" placeholder="logradouro"
-															name="logradouro" id="logradouro" value=${aluno.logradouro }>
+															name="logradouro" id="logradouro" value=${modelAluno.logradouro }>
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Número</label> <input type="text"
 															class="form-control" placeholder="numero"
-															name="numero" id="numero" value="${aluno.numero }">
+															name="numero" id="numero" value="${modelAluno.numero }">
 													</div>
 												</div>
 											</div>
@@ -109,20 +112,20 @@
 													<div class="form-group">
 														<label>Bairro</label> <input type="text"
 															class="form-control" placeholder="bairro" name="bairro"
-															id="bairro" value="${aluno.bairro }">
+															id="bairro" value="${modelAluno.bairro }">
 													</div>
 												</div>
 												<div class="col-md-4 px-1">
 													<div class="form-group">
 														<label>Cidade</label> <input type="text"
 															class="form-control" placeholder="cidade" name="cidade"
-															id="cidade" value="${aluno.cidade }">
+															id="cidade" value="${modelAluno.cidade }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label>UF</label> <input type="text" class="form-control"
-															placeholder="uf" name="uf" id="uf" value="${aluno.uf }">
+															placeholder="uf" name="uf" id="uf" value="${modelAluno.uf }">
 													</div>
 												</div>
 											</div>
