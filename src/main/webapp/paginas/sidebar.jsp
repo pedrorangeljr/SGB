@@ -24,7 +24,7 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="<%= request.getContextPath() %>/paginas/cadastroAlunos.jsp">Alunos</a>
+            <a class="collapse-item" href="<%= request.getContextPath() %>/ServletAluno?acao=listarAlunos">Alunos</a>
             <a class="collapse-item" href="cadastroFuncionarios.jsp">Funcinários</a>
             <a class="collapse-item" href="cadastroLivros.jsp">Livros</a>
             <a class="collapse-item" href="cadastroEditoras.jsp">Editoras</a>

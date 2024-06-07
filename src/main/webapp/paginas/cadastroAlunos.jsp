@@ -31,11 +31,6 @@
 						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">Sistema Genrenciador de
 							Biblioteca</h1>
-
-						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="./">Home</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-						</ol>
 					</div>
 
 					<!--Row-->
@@ -152,66 +147,51 @@
 							</div>
 						</div>
 					</div>
+					<br />
+
+					<div class="card mb-4">
+						<div
+							class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+							<h4 class="m-0 font-weight-bold text-primary">Tabela de
+								Alunos</h4>
+						</div>
+						<div class="table-responsive p-3">
+							<table class="table align-items-center table-flush"
+								id="tabelaAlunos">
+
+								<thead class="thead-light">
+									<tr>
+										<th>ID</th>
+										<th>Nome</th>
+										<th>Telefone</th>
+										<th>CPF</th>
+										<th>EDITAR</th>
+										<th>EXCLUIR</th>
+									</tr>
+								</thead>
+								<tbody>
+                                    <c:forEach items='${modelAluno }' var='alunos'>
+                                       <tr>                                     
+                                          <td><c:out value="${alunos.id }"></c:out></td>
+                                          <td><c:out value="${alunos.nome }"></c:out></td>
+                                          <td><c:out value="${alunos.telefone }"></c:out></td>
+                                          <td><c:out value="${alunos.cpf }"></c:out></td>
+                                          <td><a href=""class="btn btn-warning btn-round">Editar</a></td>
+                                          <td><a href=""class="btn btn-danger btn-round">Excluir</a></td>
+                                       </tr>
+                                    
+                                    </c:forEach>
+								</tbody>
+							</table>
+						</div>
+
+					</div>
+
 					<!--Row-->
 				</div>
 				<!---Container Fluid-->
 			</div>
 
-			<!-- Modal -->
-			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-
-						<div class="modal-body">
-
-							<form class="navbar-search"
-								action="<%=request.getContextPath()%>/ServletAluno"
-								method="post" id="formUser">
-
-								<input type="hidden" name="idAluno" value="" /> <input
-									type="hidden" name="acao" id="acao" value="">
-
-								<div class="input-group">
-									<input type="text" id="cpf" name="cpf"
-										class="form-control bg-light border-1 small"
-										placeholder="Pesquisar por CPF" aria-label="Search"
-										aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-									<div class="input-group-append">
-										<button onclick="buscarCpf();" class="btn btn-primary"
-											type="button">
-											<i class="fas fa-search fa-sm"></i>
-										</button>
-									</div>
-								</div>
-
-
-							</form>
-
-
-						</div>
-
-						<table class="table align-items-center table-flush"
-							id="tabelaResultados">
-							<thead class="thead-light">
-								<tr>
-									<th>ID</th>
-									<th>Nome</th>
-									<th>CPF</th>
-									<th>Ação</th>
-								</tr>
-							</thead>
-							<tbody>
-
-							</tbody>
-						</table>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary"
-								data-dismiss="modal">Fechar</button>
-						</div>
-					</div>
-				</div>
-			</div>
 			<!-- Footer -->
 
 			<jsp:include page="footer.jsp"></jsp:include>
@@ -227,6 +207,64 @@
 	</a>
 
 	<jsp:include page="script.jsp"></jsp:include>
+
+	<!-- Modal -->
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body">
+
+					<form class="navbar-search">
+
+						<input type="hidden" name="idAluno" value="" /> <input
+							type="hidden" name="acao" id="acao" value="">
+
+						<div class="input-group">
+
+							<input type="text" id="cpf" name="cpf"
+								class="form-control bg-light border-1 small"
+								placeholder="Pesquisar por CPF" aria-label="Search"
+								aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+
+							<div class="input-group-append">
+								<button onclick="buscarCpf();" class="btn btn-primary"
+									type="button">
+									<i class="fas fa-search fa-sm"></i>
+								</button>
+							</div>
+
+						</div>
+
+
+					</form>
+
+
+				</div>
+
+				<table class="table align-items-center table-flush"
+					id="tabelaResultados">
+					<thead class="thead-light">
+						<tr>
+							<th>ID</th>
+							<th>Nome</th>
+							<th>CPF</th>
+							<th>Ação</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					</tbody>
+				</table>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		function mostrarAlerta() {
@@ -260,8 +298,30 @@
 					});
 
 		}
-		
-		
+
+		function buscarCpf() {
+
+			var cpf = document.getElementById("cpf").value;
+
+			if (cpf != null && cpf != '' && cpf.trim() != '') {
+
+				var urlAction = document.getElementById("formAluno").action;
+
+				$.ajax({
+
+					method : "get",
+					url : urlAction,
+					data : "cpf=" + idAluno + "&acao=buscarCpf",
+					success : function(response) {
+
+						alert(response);
+					}
+
+				}).fail(function(xhr, status, errorThrown) {
+					alert('Erro ao pesquisar Aluno ' + xhr.responseText);
+				});
+			}
+		}}
 	</script>
 </body>
 

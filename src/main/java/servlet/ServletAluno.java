@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.DaoAluno;
 import model.ModelAluno;
 
-@WebServlet("/ServletAluno")
+@WebServlet(urlPatterns = {"/ServletAluno"})
 public class ServletAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -56,6 +56,14 @@ public class ServletAluno extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
 				dispatcher.forward(request, response);
 
+			}
+			else if(acao.equalsIgnoreCase("listarAlunos")) {
+				
+				List<ModelAluno> modelAluno = daoAluno.consultaAluno();
+				
+				request.setAttribute("modelAluno", modelAluno);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+				dispatcher.forward(request, response);
 			}
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAluno.jsp");
