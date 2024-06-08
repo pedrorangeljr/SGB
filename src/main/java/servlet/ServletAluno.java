@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dao.DaoAluno;
 import model.ModelAluno;
 
-@WebServlet(urlPatterns = {"/ServletAluno"})
+@WebServlet(urlPatterns = { "/ServletAluno" })
 public class ServletAluno extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -33,17 +33,13 @@ public class ServletAluno extends HttpServlet {
 
 			String acao = request.getParameter("acao");
 
-			if (acao.equalsIgnoreCase("buscarCpf")) {
+			if (acao.equalsIgnoreCase("listarAlunos")) {
 
-				String cpf = request.getParameter("cpf");
+				List<ModelAluno> aluno = daoAluno.consultaAluno();
 
-				List<ModelAluno> dadosJson = daoAluno.consultaAlunoPorCpf(cpf);
-
-				ObjectMapper mapper = new ObjectMapper();
-
-				String json = mapper.writeValueAsString(dadosJson);
-
-				response.getWriter().write(json);
+				request.setAttribute("modelAluno", aluno);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+				dispatcher.forward(request, response);
 			}
 
 			else if (acao.equalsIgnoreCase("buscarEdidar")) {
@@ -56,18 +52,12 @@ public class ServletAluno extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
 				dispatcher.forward(request, response);
 
-			}
-			else if(acao.equalsIgnoreCase("listarAlunos")) {
-				
-				List<ModelAluno> modelAluno = daoAluno.consultaAluno();
-				
-				request.setAttribute("modelAluno", modelAluno);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
-				dispatcher.forward(request, response);
-			}
+			} else {
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAluno.jsp");
-			dispatcher.forward(request, response);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAluno.jsp");
+				dispatcher.forward(request, response);
+
+			}
 
 		} catch (Exception e) {
 
@@ -82,7 +72,7 @@ public class ServletAluno extends HttpServlet {
 
 			String msg = "Cadastro realizado com sucesso";
 
-			String id = request.getParameter("id");
+			String idAluno = request.getParameter("idAluno");
 			String nome = request.getParameter("nome");
 			String telefone = request.getParameter("telefone");
 			String cpf = request.getParameter("cpf");
@@ -95,7 +85,7 @@ public class ServletAluno extends HttpServlet {
 
 			ModelAluno aluno = new ModelAluno();
 
-			aluno.setIdAluno(id != null && !id.isEmpty() ? Long.parseLong(id) : null);
+			aluno.setIdAluno(idAluno != null && !idAluno.isEmpty() ? Long.parseLong(idAluno) : null);
 			aluno.setNome(nome);
 			aluno.setTelefone(Integer.parseInt(telefone));
 			aluno.setCpf(cpf);
@@ -123,7 +113,7 @@ public class ServletAluno extends HttpServlet {
 				aluno = daoAluno.salvarAluno(aluno);
 			}
 
-			request.setAttribute("msg", msg);
+			request.setAttribute("msg", msg);			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
 			request.setAttribute("modelAluno", aluno);
 			dispatcher.forward(request, response);

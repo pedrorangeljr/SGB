@@ -50,16 +50,16 @@
 											<div class="row">
 												<div class="col-md-5 pr-1">
 													<div class="form-group">
-														<label>ID</label> <input type="text" class="form-control"
+														<label>ID</label> <input type="text" id="idAluno" name="idAluno" class="form-control"
 															disabled="" readonly="readonly"
-															value="${modelAluno.idAluno }">
+															value="${alunos.idAluno }">
 													</div>
 												</div>
 												<div class="col-md-3 px-1">
 													<div class="form-group">
 														<label>Nome</label> <input type="text"
 															class="form-control" placeholder="name" name="nome"
-															id="nome" value="${modelAluno.nome }">
+															id="nome" value="${alunos.nome }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
@@ -67,7 +67,7 @@
 														<label for="telefone">Telefone</label> <input type="text"
 															class="form-control" placeholder="telefone"
 															name="telefone" id="telefone"
-															value="${modelAluno.telefone }">
+															value="${alunos.telefone }">
 													</div>
 												</div>
 											</div>
@@ -76,14 +76,14 @@
 													<div class="form-group">
 														<label>CPF</label> <input type="text" class="form-control"
 															placeholder="cpf" name="cpf" id="cpf"
-															value="${modelAluno.cpf }">
+															value="${alunos.cpf }">
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Cep</label> <input type="text" class="form-control"
 															placeholder="cep" name="cep" id="cep"
-															onblur="pesquisaCep();" value=${modelAluno.cep }>
+															onblur="pesquisaCep();" value=${alunos.cep }>
 													</div>
 												</div>
 											</div>
@@ -93,14 +93,14 @@
 														<label>Logradouro</label> <input type="text"
 															class="form-control" placeholder="logradouro"
 															name="logradouro" id="logradouro"
-															value=${modelAluno.logradouro }>
+															value=${alunos.logradouro }>
 													</div>
 												</div>
 												<div class="col-md-6 pl-1">
 													<div class="form-group">
 														<label>Número</label> <input type="text"
 															class="form-control" placeholder="numero" name="numero"
-															id="numero" value="${modelAluno.numero }">
+															id="numero" value="${alunos.numero }">
 													</div>
 												</div>
 											</div>
@@ -111,21 +111,21 @@
 													<div class="form-group">
 														<label>Bairro</label> <input type="text"
 															class="form-control" placeholder="bairro" name="bairro"
-															id="bairro" value="${modelAluno.bairro }">
+															id="bairro" value="${alunos.bairro }">
 													</div>
 												</div>
 												<div class="col-md-4 px-1">
 													<div class="form-group">
 														<label>Cidade</label> <input type="text"
 															class="form-control" placeholder="cidade" name="cidade"
-															id="cidade" value="${modelAluno.cidade }">
+															id="cidade" value="${alunos.cidade }">
 													</div>
 												</div>
 												<div class="col-md-4 pl-1">
 													<div class="form-group">
 														<label>UF</label> <input type="text" class="form-control"
 															placeholder="uf" name="uf" id="uf"
-															value="${modelAluno.uf }">
+															value="${alunos.uf }">
 													</div>
 												</div>
 											</div>
@@ -133,12 +133,7 @@
 											<div class="row">
 												<div class="update ml-auto mr-auto">
 													<button type="submit" class="btn btn-primary btn-round"
-														onclick="mostrarAlerta()">Cadastrar</button>
-													<button type="button" data-toggle="modal"
-														data-target="#exampleModal"
-														class="btn btn-secondary btn-round">Pesquisar</button>
-													<button type="button" class="btn btn-warning btn-round">Editar</button>
-													<button type="button" class="btn btn-danger btn-round">Excluir</button>
+														onclick="mostrarAlerta()">Cadastrar</button>													
 												</div>
 											</div>
 										</form>
@@ -172,7 +167,7 @@
 								<tbody>
                                     <c:forEach items='${modelAluno }' var='alunos'>
                                        <tr>                                     
-                                          <td><c:out value="${alunos.id }"></c:out></td>
+                                          <td><c:out value="${alunos.idAluno }"></c:out></td>
                                           <td><c:out value="${alunos.nome }"></c:out></td>
                                           <td><c:out value="${alunos.telefone }"></c:out></td>
                                           <td><c:out value="${alunos.cpf }"></c:out></td>
@@ -208,64 +203,7 @@
 
 	<jsp:include page="script.jsp"></jsp:include>
 
-	<!-- Modal -->
-
-	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-
-				<div class="modal-body">
-
-					<form class="navbar-search">
-
-						<input type="hidden" name="idAluno" value="" /> <input
-							type="hidden" name="acao" id="acao" value="">
-
-						<div class="input-group">
-
-							<input type="text" id="cpf" name="cpf"
-								class="form-control bg-light border-1 small"
-								placeholder="Pesquisar por CPF" aria-label="Search"
-								aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-
-							<div class="input-group-append">
-								<button onclick="buscarCpf();" class="btn btn-primary"
-									type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
-							</div>
-
-						</div>
-
-
-					</form>
-
-
-				</div>
-
-				<table class="table align-items-center table-flush"
-					id="tabelaResultados">
-					<thead class="thead-light">
-						<tr>
-							<th>ID</th>
-							<th>Nome</th>
-							<th>CPF</th>
-							<th>Ação</th>
-						</tr>
-					</thead>
-					<tbody>
-
-					</tbody>
-				</table>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Fechar</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	
 	<script type="text/javascript">
 		function mostrarAlerta() {
 			alert("Salvo com sucesso!");
@@ -298,30 +236,6 @@
 					});
 
 		}
-
-		function buscarCpf() {
-
-			var cpf = document.getElementById("cpf").value;
-
-			if (cpf != null && cpf != '' && cpf.trim() != '') {
-
-				var urlAction = document.getElementById("formAluno").action;
-
-				$.ajax({
-
-					method : "get",
-					url : urlAction,
-					data : "cpf=" + idAluno + "&acao=buscarCpf",
-					success : function(response) {
-
-						alert(response);
-					}
-
-				}).fail(function(xhr, status, errorThrown) {
-					alert('Erro ao pesquisar Aluno ' + xhr.responseText);
-				});
-			}
-		}}
 	</script>
 </body>
 
