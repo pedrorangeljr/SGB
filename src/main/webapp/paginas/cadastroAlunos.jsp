@@ -165,7 +165,7 @@
 									</tr>
 								</thead>
 								<tbody>
-                                    <c:forEach items='${modelAluno }' var='alunos'>
+                                    <c:forEach items="${modelAluno }" var="alunos">
                                        <tr>                                     
                                           <td><c:out value="${alunos.idAluno }"></c:out></td>
                                           <td><c:out value="${alunos.nome }"></c:out></td>
