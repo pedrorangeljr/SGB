@@ -38,7 +38,7 @@ public class ServletAluno extends HttpServlet {
 				List<ModelAluno> aluno = daoAluno.consultaAluno();
 
 				request.setAttribute("modelAluno", aluno);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/cadastroAlunos.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("paginas/listaAlunos.jsp");
 				dispatcher.forward(request, response);
 			}
 

@@ -142,7 +142,8 @@
 							</div>
 						</div>
 					</div>
-					<br />
+					
+					<!--  
 
 					<div class="card mb-4">
 						<div
@@ -181,7 +182,7 @@
 						</div>
 
 					</div>
-
+                    -->
 					<!--Row-->
 				</div>
 				<!---Container Fluid-->

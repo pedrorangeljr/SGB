@@ -24,7 +24,7 @@
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             
-            <a class="collapse-item" href="<%= request.getContextPath() %>/ServletAluno?acao=listarAlunos">Alunos</a>
+            <a class="collapse-item" href="<%= request.getContextPath() %>/paginas/cadastroAlunos.jsp">Alunos</a>
             <a class="collapse-item" href="cadastroFuncionarios.jsp">Funcinários</a>
             <a class="collapse-item" href="cadastroLivros.jsp">Livros</a>
             <a class="collapse-item" href="cadastroEditoras.jsp">Editoras</a>
@@ -37,12 +37,15 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
           <i class="fab fa-fw fa-wpforms"></i>
-          <span>Relatórios</span>
+          <span>Lista de Usuários</span>
         </a>
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="form_basics.html">Form Basics</a>
-            <a class="collapse-item" href="form_advanceds.html">Form Advanceds</a>
+            <a class="collapse-item" href="<%= request.getContextPath() %>/ServletAluno?acao=listarAlunos">Alunos</a>
+            <a class="collapse-item" href="form_advanceds.html">Funcionários</a>
+            <a class="collapse-item" href="form_advanceds.html">Livros</a>
+            <a class="collapse-item" href="form_advanceds.html">Editoras</a>
+            <a class="collapse-item" href="form_advanceds.html">Periódicos</a>
           </div>
         </div>
       </li>
